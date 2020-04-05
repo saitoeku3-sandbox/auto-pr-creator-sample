@@ -7,9 +7,13 @@
   "private": true,
   "scripts": {
     "build": "nuxt-ts build",
-    "dev": "nodemon",
+    "dev": "cross-env NODE_ENV=development nodemon",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "start": "cross-env NODE_ENV=production nodemon"
+    "start": "cross-env NODE_ENV=production nodemon",
+    "stop": "forever stopall"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.2",
@@ -24,6 +28,8 @@
     "http-errors": "^1.7.3",
     "nuxt": "^2.12.2",
     "ts-node": "^8.8.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.8.3",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
@@ -32,12 +38,11 @@
     "@types/http-errors": "^1.6.3",
     "@types/sax": "^1.2.1",
     "@types/uuid": "^7.0.2",
+    "forever": "^2.0.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "sass-loader": "^8.0.2",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.8.3",
     "webpack": "^4.42.1"
   }
 }

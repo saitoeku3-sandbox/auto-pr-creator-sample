@@ -4,7 +4,10 @@ import consola from 'consola'
 import errors from 'http-errors'
 import { Nuxt, Builder } from 'nuxt'
 import { index, update } from '~/api/virtual-beings'
+import { env } from '~/constants/env'
 import config from '~/../nuxt.config'
+
+const { PORT } = env
 
 const app = express()
 
@@ -62,10 +65,10 @@ const start = async () => {
   })
 
   // Listen the server
-  const { host, port } = nuxt.options.server
-  app.listen(port, host)
+  const { host } = nuxt.options.server
+  app.listen(PORT)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://${host}:${PORT}`,
     badge: true,
   })
 }
