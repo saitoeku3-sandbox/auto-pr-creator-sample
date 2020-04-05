@@ -7,7 +7,7 @@ import { env } from '../constsnts/env'
 import { VirtualBeing } from '../types'
 
 const { GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN } = env
-const FILE_PATH = 'resource/virtual-beings.csv'
+const FILE_PATH = 'data/virtual-beings.csv'
 const TITLE = ''
 const BODY = ''
 const COMMIT_MESSAGE = `update ${FILE_PATH}`
