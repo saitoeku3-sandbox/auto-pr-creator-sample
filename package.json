@@ -11,6 +11,9 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "start": "cross-env NODE_ENV=production nodemon"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.2",
     "@nuxt/vue-app": "^2.12.2",
