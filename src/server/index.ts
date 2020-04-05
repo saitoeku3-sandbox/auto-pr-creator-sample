@@ -3,8 +3,8 @@ import bodyParser from 'body-parser'
 import consola from 'consola'
 import errors from 'http-errors'
 import { Nuxt, Builder } from 'nuxt'
-import { index, update } from '../api/virtual-beings'
-import config from '../../nuxt.config'
+import { index, update } from '~/api/virtual-beings'
+import config from '~/../nuxt.config'
 
 const app = express()
 

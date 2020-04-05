@@ -1,15 +1,15 @@
 {
-  "name": "auto-pr-creator-sample",
+  "name": "auto-pr-creator",
   "version": "1.0.0",
-  "description": "My excellent Nuxt.js project",
+  "description": "Automatically create pull requests that change CSV files",
   "author": "Tadao Iseki <saitoeku3@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "nuxt-ts build",
     "dev": "nodemon",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start"
+    "start": "cross-env NODE_ENV=production nodemon"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.2",
@@ -36,6 +36,7 @@
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "sass-loader": "^8.0.2",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1"
   }

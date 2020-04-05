@@ -2,13 +2,13 @@ import { Octokit } from '@octokit/rest'
 import parser from 'csv-parse/lib/sync'
 import { Request } from 'express'
 import { v4 as uuid } from 'uuid'
-import { base64Decode } from '../utils/base64'
-import { env } from '../constsnts/env'
-import { VirtualBeing } from '../types'
+import { base64Decode } from '~/utils/base64'
+import { env } from '~/constsnts/env'
+import { VirtualBeing } from '~/types'
 
 const { GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN } = env
 const FILE_PATH = 'data/virtual-beings.csv'
-const TITLE = ''
+const TITLE = `update ${FILE_PATH}`
 const BODY = ''
 const COMMIT_MESSAGE = `update ${FILE_PATH}`
 const BASE_BRANCH = 'master'
