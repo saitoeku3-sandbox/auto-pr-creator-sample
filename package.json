@@ -5,24 +5,38 @@
   "author": "Tadao Iseki <saitoeku3@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
     "build": "nuxt-ts build",
+    "dev": "nodemon",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.0",
-    "@nuxtjs/axios": "^5.3.6",
-    "cross-env": "^5.2.0",
+    "@nuxt/typescript-runtime": "^0.4.2",
+    "@nuxt/vue-app": "^2.12.2",
+    "@nuxtjs/axios": "^5.9.7",
+    "@octokit/rest": "^17.1.4",
+    "atob": "^2.1.2",
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.2",
+    "csv-parse": "^4.8.8",
     "express": "^4.16.4",
-    "nuxt": "^2.0.0",
-    "ts-node": "^8.8.1"
+    "http-errors": "^1.7.3",
+    "nuxt": "^2.12.2",
+    "ts-node": "^8.8.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.19.1"
+    "@nuxt/typescript-build": "^0.6.2",
+    "@types/atob": "^2.1.2",
+    "@types/http-errors": "^1.6.3",
+    "@types/sax": "^1.2.1",
+    "@types/uuid": "^7.0.2",
+    "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.2",
+    "sass-loader": "^8.0.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1"
   }
 }

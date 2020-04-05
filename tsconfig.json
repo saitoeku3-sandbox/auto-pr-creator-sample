@@ -9,15 +9,13 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"],
+      "~/*": ["src/*"],
       "*": ["types/*"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "types": ["@types/node", "@nuxt/types"]
-  },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+    "types": ["@types/node", "@nuxt/types", "@nuxt/vue-app", "@nuxtjs/axios"]
+  }
 }
