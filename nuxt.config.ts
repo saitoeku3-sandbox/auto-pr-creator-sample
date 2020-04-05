@@ -1,4 +1,7 @@
 import { Configuration } from '@nuxt/types'
+import { env } from '~/constants/env'
+
+const { HOST, PORT } = env
 
 const config: Configuration = {
   mode: 'universal',
@@ -47,7 +50,7 @@ const config: Configuration = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:3000/api'
+    baseURL: `http://${HOST}:${PORT}/api`
   },
   /*
    ** Build configuration
