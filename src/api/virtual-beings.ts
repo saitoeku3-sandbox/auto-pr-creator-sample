@@ -3,7 +3,7 @@ import parser from 'csv-parse/lib/sync'
 import { Request } from 'express'
 import { v4 as uuid } from 'uuid'
 import { base64Decode } from '~/utils/base64'
-import { env } from '~/constsnts/env'
+import { env } from '~/constants/env'
 import { VirtualBeing } from '~/types'
 
 const { GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN } = env
