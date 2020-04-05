@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_ENV=production nuxt-ts build",
+    "build": "nuxt-ts build",
     "dev": "nodemon",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "start": "cross-env NODE_ENV=production forever start ./.nuxt/server.js",
