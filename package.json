@@ -6,10 +6,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "nuxt-ts build",
+    "build": "cross-env NODE_ENV=production nuxt-ts build",
     "dev": "nodemon",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "start": "cross-env NODE_ENV=production nodemon"
+    "start": "cross-env NODE_ENV=production forever start ./.nuxt/server.js",
+    "stop": "forever stopall"
   },
   "engines": {
     "node": "12.x"
@@ -35,6 +36,7 @@
     "@types/http-errors": "^1.6.3",
     "@types/sax": "^1.2.1",
     "@types/uuid": "^7.0.2",
+    "forever": "^2.0.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
