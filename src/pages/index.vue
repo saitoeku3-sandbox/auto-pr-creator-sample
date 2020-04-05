@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div v-for="virtualBeing in virtualBeings" :key="virtualBeing.label">
-      <Form :virtualBeing="virtualBeing" />
+      <Form
+        :virtualBeing="virtualBeing"
+        :submit="createPullRequest"
+        :loading="isLoading"
+      />
     </div>
   </div>
 </template>
@@ -13,13 +17,30 @@ import { VirtualBeing } from '~/types'
 
 export default Vue.extend({
   components: {
-    Form
+    Form,
   },
 
-  data(): { virtualBeings: VirtualBeing[] } {
+  data() {
     return {
-      virtualBeings: []
+      virtualBeings: [] as VirtualBeing[],
+      isLoading: false,
     }
+  },
+
+  methods: {
+    async createPullRequest(virtualBeing: VirtualBeing) {
+      this.isLoading = true
+      const isConfirmed = confirm('送信しますか？')
+      if (!isConfirmed) return
+
+      try {
+        await this.$axios.$post('/virtual-beings', virtualBeing)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.isLoading = false
+      }
+    },
   },
 
   async created() {
@@ -30,7 +51,7 @@ export default Vue.extend({
     } catch (error) {
       console.error(error)
     }
-  }
+  },
 })
 </script>
 

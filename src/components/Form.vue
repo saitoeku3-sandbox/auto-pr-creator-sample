@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="name">{{ $props.virtualBeing.label }}</div>
-    <form @submit="submit">
+    <form @submit="createPullRequest">
       <div>
         <label>チャンネル ID</label>
         <input type="text" v-model="youtubeChannelId" />
@@ -19,7 +19,7 @@
         <input type="text" v-model="twitterAccount" />
       </div>
       <div>
-        <button>変更</button>
+        <button :disabled="loading">{{ loading ? '送信中' : '送信' }}</button>
       </div>
     </form>
   </div>
@@ -35,8 +35,16 @@ export default Vue.extend({
   props: {
     virtualBeing: {
       type: Object as PropType<VirtualBeing>,
-      required: true
-    }
+      required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+    },
+    submit: {
+      type: Function,
+      required: true,
+    },
   },
 
   data() {
@@ -44,16 +52,13 @@ export default Vue.extend({
       youtubeChannelId: this.virtualBeing.youtubeChannelId,
       youtubeChannelName: this.virtualBeing.youtubeChannelName,
       office: this.virtualBeing.office,
-      twitterAccount: this.virtualBeing.twitterAccount
+      twitterAccount: this.virtualBeing.twitterAccount,
     }
   },
 
   methods: {
-    async submit(event: Event) {
+    async createPullRequest(event: Event) {
       event.preventDefault()
-      const isConfirmed = confirm('送信しますか？')
-      if (!isConfirmed) return
-
       const virtualBeing: VirtualBeing = {
         label: this.virtualBeing.label,
         youtubeChannelName: this.youtubeChannelName,
@@ -61,14 +66,9 @@ export default Vue.extend({
         office: this.office,
         twitterAccount: this.twitterAccount
       }
-
-      try {
-        await this.$axios.$post('/virtual-beings', virtualBeing)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  }
+      this.$props.submit(virtualBeing)
+    },
+  },
 })
 </script>
 
