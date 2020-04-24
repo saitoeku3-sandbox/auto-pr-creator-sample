@@ -1,13 +1,13 @@
 import { Octokit } from '@octokit/rest'
-import parser from 'csv-parse/lib/sync'
 import { Request } from 'express'
 import { v4 as uuid } from 'uuid'
-import { base64Decode } from '~/utils/base64'
 import { env } from '~/constants/env'
+import { TTL } from '~/lib/ttl'
 import { VirtualBeing } from '~/types'
+import { base64Decode } from '~/utils/base64'
 
 const { GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN } = env
-const FILE_PATH = 'data/virtual-beings.csv'
+const FILE_PATH = 'data/virtual-beings.ttl'
 const TITLE = `update ${FILE_PATH}`
 const BODY = ''
 const COMMIT_MESSAGE = `update ${FILE_PATH}`
@@ -26,28 +26,16 @@ export const index = async () => {
 
   if ('content' in data) {
     const content = base64Decode(data.content || '')
-    const [keys, ...values]: string[][] = parser(content)
-
-    const virtualBeings = values.map(
-      (value: string[]) =>
-        Object.fromEntries(
-          keys.map((key, index) => [key, value[index]])
-        ) as VirtualBeing
-    )
-
-    return virtualBeings
+    const ttl = new TTL(content)
+    return ttl.findAll()
   }
+
+  return []
 }
 
 export const update = async (req: Request) => {
   const branch = uuid()
-  const {
-    label,
-    youtubeChannelId,
-    youtubeChannelName,
-    twitterAccount,
-    office,
-  }: VirtualBeing = req.body
+  const params: VirtualBeing = req.body
 
   const { data } = await octkit.repos.getContents({
     owner: GITHUB_OWNER,
@@ -57,17 +45,12 @@ export const update = async (req: Request) => {
 
   if (!('content' in data)) return
 
-  const previousContent = data.content || ''
   const file = data.sha
 
-  const row = `${label},${youtubeChannelId},${youtubeChannelName},${twitterAccount},${office}`
-  const rows = base64Decode(previousContent).split('\n')
-  const index = rows.findIndex((value) => value.startsWith(label))
-
-  if (rows[index] === row) return
-
-  rows[index] = row
-  const content = rows.join('\n')
+  const ttl = new TTL<VirtualBeing>(base64Decode(data.content || ''))
+  const virtualBeing = ttl.find(params.label)
+  ttl.update(virtualBeing, params)
+  const content = await ttl.read()
 
   const {
     data: {
