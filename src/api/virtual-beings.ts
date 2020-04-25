@@ -45,8 +45,6 @@ export const update = async (req: Request) => {
 
   if (!('content' in data)) return
 
-  const file = data.sha
-
   const ttl = new TTL<VirtualBeing>(base64Decode(data.content || ''))
   const virtualBeing = ttl.find(params.label)
   ttl.update(virtualBeing, params)
@@ -65,12 +63,6 @@ export const update = async (req: Request) => {
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
     branch: BASE_BRANCH,
-  })
-
-  await octkit.git.getBlob({
-    owner: GITHUB_OWNER,
-    repo: GITHUB_REPO,
-    file_sha: file,
   })
 
   const {
