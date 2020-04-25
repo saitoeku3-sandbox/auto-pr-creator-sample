@@ -8,7 +8,7 @@
     rdfs:label "キズナアイ";
     vlueprint:youtubeChannelId "UC4YaOt1yT-ZeyB0OmxHgolA";
     vlueprint:youtubeChannelName "A.I.Channel";
-    vlueprint:twitterAccount "aichan_nel";
+    vlueprint:twitterAccount "aicha";
     vlueprint:office "upd8".
 
 <キズナアイ(ゲーム)> a vlueprint:VirtualBeing;
