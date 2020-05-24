@@ -9,7 +9,7 @@
     vlueprint:youtubeChannelId "UC4YaOt1yT-ZeyB0OmxHgolA";
     vlueprint:youtubeChannelName "A.I.Channel";
     vlueprint:twitterAccount "aichan_nel";
-    vlueprint:office "upd8".
+    vlueprint:office "Kizuna AI株式会社".
 
 <キズナアイ(ゲーム)> a vlueprint:VirtualBeing;
     rdfs:label "キズナアイ(ゲーム)";
